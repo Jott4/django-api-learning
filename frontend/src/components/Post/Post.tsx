@@ -4,36 +4,34 @@ import MemoComment from "../../assets/icons/Comment";
 import MemoSend from "../../assets/icons/Send";
 import MemoSave from "../../assets/icons/Save";
 import Carousel from "react-instagram-carousel";
+import { PostProps } from "../../interfaces/post";
 
-export interface PostProps {
-  images: string[];
-  user: {
-    avatar: string;
-    username: string;
-  };
-  post: {
-    createdAt: string;
-    location: string;
-    description: string;
-  };
-}
-
-const Post: React.FunctionComponent<PostProps> = ({ images, user, post }) => {
+const Post: React.FunctionComponent<PostProps> = ({
+  created_at,
+  description,
+  image,
+  user,
+  image_filter,
+}) => {
   return (
     <div className="mb-4 bg-white">
       {/* Header e avatar */}
       <div className="w-full flex items-center gap-x-4 py-3 ml-4 bg-white">
-        <img src={user.avatar} className="rounded-full w-8 h-8" alt="avatar" />
+        <img
+          src={user.profile_pic || "https://lorem.pcisum/200/200"}
+          className="rounded-full w-8 h-8"
+          alt="avatar"
+        />
         <div>
           <p className="text-neutral-800 font-semibold text-sm">
             {user.username}
           </p>
-          <p className="text-neutral-800 text-xs font-light">{post.location}</p>
+          <p className="text-neutral-800 text-xs font-light">{image_filter}</p>
         </div>
       </div>
       {/* Img */}
-      <div className="w-screen" style={{ height: 600 }}>
-        <Carousel images={images} />
+      <div className="w-screen">
+        <img className="w-full" src={image} alt="post" />
       </div>
       {/* Bottom */}
       <div className="px-4 bg-white">
@@ -41,15 +39,7 @@ const Post: React.FunctionComponent<PostProps> = ({ images, user, post }) => {
           <div className="flex flex-row items-center pb-2">
             <MemoHeart className="text-2xl m-2 ml-0" />
             <MemoComment className="text-2xl m-2" />
-            <MemoSend
-              className="text-2xl m-2"
-              onClick={() =>
-                window.open(
-                  "https://api.whatsapp.com/send/?phone=5543991943080&text=te%20amo",
-                  "_blank"
-                )
-              }
-            />
+            <MemoSend className="text-2xl m-2" />
           </div>
           <MemoSave className="text-2xl m-2" />
         </div>
@@ -59,9 +49,9 @@ const Post: React.FunctionComponent<PostProps> = ({ images, user, post }) => {
             <strong>arissanonaca</strong>
           </p>
           <p className="pb-2">
-            <strong>{user.username}</strong> {post.description}
+            <strong>{user.username}</strong> {description}
           </p>
-          <p className="text-xs text-neutral-400 pb-4">{post.createdAt}</p>
+          <p className="text-xs text-neutral-400 pb-4">{created_at}</p>
         </div>
       </div>
     </div>

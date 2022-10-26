@@ -25,8 +25,8 @@ class PostDetailView(generics.RetrieveAPIView):
 
 
 class PostCreateView(generics.ListCreateAPIView):
-    authentication_classes = (TokenAuthentication,)
-    permission_classes = (IsAuthenticated,)
+    # authentication_classes = (TokenAuthentication,)
+    # permission_classes = (IsAuthenticated,)
 
     queryset = models.Post.objects.all().order_by("-created_at", "-updated_at")
     serializer_class = serializers.PostSerializer
