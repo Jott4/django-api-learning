@@ -18,7 +18,7 @@ const Post: React.FunctionComponent<PostProps> = ({
       {/* Header e avatar */}
       <div className="w-full flex items-center gap-x-4 py-3 ml-4 bg-white">
         <img
-          src={user.profile_pic || "https://lorem.pcisum/200/200"}
+          src={user.profile_pic || "https://picsum.photos/200/200"}
           className="rounded-full w-8 h-8"
           alt="avatar"
         />
@@ -45,13 +45,11 @@ const Post: React.FunctionComponent<PostProps> = ({
         </div>
         <div className="text-neutral-800 text-sm">
           <p className="pb-2">
-            Curtido por <strong>jvgcunha</strong> e{" "}
-            <strong>arissanonaca</strong>
-          </p>
-          <p className="pb-2">
             <strong>{user.username}</strong> {description}
           </p>
-          <p className="text-xs text-neutral-400 pb-4">{created_at}</p>
+          <p className="text-xs text-neutral-400 pb-4">
+            {new Date(created_at).toLocaleDateString()}
+          </p>
         </div>
       </div>
     </div>

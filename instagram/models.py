@@ -22,7 +22,11 @@ class Post(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(("post_picture"), upload_to="post_pics/%Y/%m", blank=True)
+    image = models.ImageField(
+        ("post_picture"),
+        upload_to="post_pics",
+        blank=True,
+    )
     image_filter = models.CharField(max_length=100, default="")
 
     def __str__(self):
